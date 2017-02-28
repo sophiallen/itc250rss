@@ -46,7 +46,7 @@ function displayFeed($id) {
 	echo 'Last updated at ';
 	echo date('H:i', $_SESSION['feedReadTime']);
 	echo ' - ';
-	echo '<a href=destroy_session.php>Reload XML data</a>';
+	echo '<a href=destroy_session.php?id='.$_GET['id'].'>Reload XML data</a>';
 	echo '<br>';
 	echo '<br>';
 
