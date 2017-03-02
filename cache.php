@@ -33,11 +33,11 @@ function getFeed($categoryId){
     // Interpret the XML feed to an object.
     $xml = simplexml_load_file($queryString);
 
-    // Set the time the XML feed was read.
-    $_SESSION['feedReadTime'] = time();
-
     // Create an array to store in the session since I don't think you can store an object.
     $_SESSION['newsStories'][$categoryId] = array();
+    
+    // Set the time the XML feed was read.
+    $_SESSION['feedReadTimes'][$categoryId]= time();
 
     // Convert the object into a regular array and store it in the session. (Some code lifted from:
     // https://github.com/nuhil/google-news-parser-json/blob/master/GoogleNews.php)
