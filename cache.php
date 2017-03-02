@@ -4,10 +4,16 @@
 session_start();
 
 // Check to see if feedReadTime is not set or if it's been more than 600 seconds since it was last set.
+//|| time() - $_SESSION['feedReadTimes'][$categoryId] > 600
 function checkFeed($id){
-	if (!isset($_SESSION['newsStories'][$categoryId]) || time() - $_SESSION['feedReadTimes'][$categoryId] > 600)
+
+    $set = isset($_SESSION['newsStories'][$id]);
+    $timeout = time() - $_SESSION['feedReadTimes'][$id] > 600;
+
+	if (!$set || $timeout)
 	{
 		$result = getFeed($id);
+
 		if (!$result) 
 		{
 			echo '<p>Could not retrieve feed at this time</p>';
