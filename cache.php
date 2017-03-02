@@ -4,13 +4,17 @@
 session_start();
 
 // Check to see if feedReadTime is not set or if it's been more than 600 seconds since it was last set.
-if(!isset($_SESSION['feedReadTime']) || time() - $_SESSION['feedReadTime'] > 600) {
-
-    //set, or re-set the session's news feed data to an empty array.
-    $_SESSION['newsStories'] = array();
-
+function checkFeed($id){
+	if (!isset($_SESSION['newsStories'][$categoryId]) || time() - $_SESSION['feedReadTimes'][$categoryId] > 600)
+	{
+		$result = getFeed($id);
+		if (!$result) 
+		{
+			echo '<p>Could not retrieve feed at this time</p>';
+			return;
+		}
+	}
 }
-
 
 function getFeed($categoryId){
 
