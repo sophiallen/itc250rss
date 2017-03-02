@@ -29,22 +29,10 @@ if(isset($_GET['id']) && (int)$_GET['id'] > 0) {
 	echo '<p>Sorry, could not retrieve any news items for that category at this time.</p>';
 }
 
-function checkFeed($id){
-	if (!isset($_SESSION['newsStories'][$categoryId]))
-	{
-		$result = getFeed($id);
-		if (!$result) 
-		{
-			echo '<p>Could not retrieve feed at this time</p>';
-			return;
-		}
-	}
-}
-
 function displayFeed($id) {
 	// Print the feedReadTime
 	echo 'Last updated at ';
-	echo date('H:i', $_SESSION['feedReadTime']);
+	echo date('H:i', $_SESSION['feedReadTimes'][$id]);
 	echo ' - ';
 	echo '<a href=destroy_session.php?id='.$_GET['id'].'>Reload XML data</a>';
 	echo '<br>';
