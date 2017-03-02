@@ -1,6 +1,6 @@
 <?php 
 /*
-*   news-feed.php - page for viewing all the news retireved based on a user's choice of category. 
+*   News-feed.php - page for viewing all the news retireved based on a user's choice of category. 
 *	@author S. Allen
 *
 */
@@ -38,18 +38,14 @@ function displayFeed($id) {
 	echo '<br>';
 	echo '<br>';
 
-	// Print out article titles with links.
-	$j = 0;
-
 	$stories = $_SESSION['newsStories'][$id];
 
-	
+	// Print out article titles with links.
 	foreach ($stories as $item) {
 		echo '<div class="story">';
 	    echo '<h3><a href=' . $item['link'] . '>';
 	    echo $item['title'] . '</a></h3>';
-	    //echo '<br>';
-	    $j++;
+
 	}
 }
 

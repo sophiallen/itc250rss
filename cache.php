@@ -3,17 +3,19 @@
 // Start or continue a session.
 session_start();
 
-// Check to see if feedReadTime is not set or if it's been more than 600 seconds since it was last set.
-//|| time() - $_SESSION['feedReadTimes'][$categoryId] > 600
+//Function to trigger reload of feed if no feed has been cached, or the feed has timed out. 
 function checkFeed($id){
 
     $set = isset($_SESSION['newsStories'][$id]);
     $timeout = time() - $_SESSION['feedReadTimes'][$id] > 600;
 
+    //if no feed set in cache, or 10 mins expired:
 	if (!$set || $timeout)
 	{
+        //try to reload the feed.
 		$result = getFeed($id);
 
+        //if unable to get the feed, display an error message. 
 		if (!$result) 
 		{
 			echo '<p>Could not retrieve feed at this time</p>';
@@ -22,6 +24,7 @@ function checkFeed($id){
 	}
 }
 
+//Sends a request for RSS and saves it to the session, based on a category id. 
 function getFeed($categoryId){
 
     //Fake categories, to be replaced with SQL call to get category names later:  
