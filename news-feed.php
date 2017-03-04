@@ -19,8 +19,11 @@ include 'cache.php';
 
 //if get request contains a valid category id, get it. Else display error message.
 if(isset($_GET['id']) && (int)$_GET['id'] > 0) {
-	 $categoryId = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
+	$categoryId = (int)$_GET['id']; #Convert to integer, will equate to zero if fails
 	 
+    //Fake categories, to be replaced with SQL call to get category names later:  
+    $categories = ['Puppies', 'Kittens', 'Brown paper packages tied up with string'];
+
 	echo '<h1>News Feed: '.$categories[$categoryId].'</h1>';
 	checkFeed($categoryId); //make sure that the feed is available. 
 	displayFeed($categoryId); //display the feed. 
@@ -43,9 +46,8 @@ function displayFeed($id) {
 	// Print out article titles with links.
 	foreach ($stories as $item) {
 		echo '<div class="story">';
-	    echo '<h3><a href=' . $item['link'] . '>';
+	    echo '<h3><a href=' . $item['link'] . '>';	 
 	    echo $item['title'] . '</a></h3>';
-
 	}
 }
 

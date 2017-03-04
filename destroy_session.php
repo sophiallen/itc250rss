@@ -1,4 +1,9 @@
 <?php
+/**
+*   destroy_session.php destroys the current session and restarts a new one.
+*	@author Ian Follett <ianfollett@gmail.com>
+*
+*/
 
 // Resume the existing session.
 session_start();

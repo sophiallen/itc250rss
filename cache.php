@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * cache.php creates or continues a session and provides a getFeed function to download and extract the data from
+ * a requested news feed from Google News or provide a cache version if the feed has already been requested in the last
+ * ten minutes.
+ * 
+ * @author Ian Follett and Sophia Allen 
+ */
+
+
 // Start or continue a session.
 session_start();
 
@@ -61,9 +70,10 @@ function getFeed($categoryId){
         preg_match('@src="([^"]+)"@', $item->description, $match);
         $parts = explode('<font size="-1">', $item->description);
 
+        //$_SESSION['newsStories'][$categoryId][$i] = $item->description;
+
         $_SESSION['newsStories'][$categoryId][$i]['title'] = (string)$item->title;
         $_SESSION['newsStories'][$categoryId][$i]['link'] = (string)$item->link;
-
         $i++;
     }
 
