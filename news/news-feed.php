@@ -4,18 +4,9 @@
 *	@author S. Allen
 *
 */
-include 'cache.php';
-
-?>
-
-<html>
-<head>
-	<title>News Feed</title>
-	<link rel="stylesheet" type="text/css" href="css/index.css">
-</head>
-<body>
-
-<?php
+include '../includes/cache.php';
+require '../inc_0700/config_inc.php'; 
+get_header();
 
 //if get request contains a valid category id, get it. Else display error message.
 if(isset($_GET['id']) && (int)$_GET['id'] > 0) {
@@ -37,7 +28,7 @@ function displayFeed($id) {
 	echo 'Last updated at ';
 	echo date('H:i', $_SESSION['feedReadTimes'][$id]);
 	echo ' - ';
-	echo '<a href=destroy_session.php?id='.$_GET['id'].'>Reload XML data</a>';
+	echo '<a href=../includes/destroy_session.php?id='.$_GET['id'].'>Reload XML data</a>';
 	echo '<br>';
 	echo '<br>';
 
@@ -51,7 +42,8 @@ function displayFeed($id) {
 	}
 }
 
+
+get_footer();
 ?>
 
-</body>
-</html>
+
