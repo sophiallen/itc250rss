@@ -13,16 +13,16 @@
 session_start();
 
 //Function to trigger reload of feed if no feed has been cached, or the feed has timed out. 
-function checkFeed($id){
+function checkFeed($id, $categoryName){
 
     $set = isset($_SESSION['newsStories'][$id]);
-    $timeout = time() - $_SESSION['feedReadTimes'][$id] > 600;
+    // $timeout = time() - $_SESSION['feedReadTimes'][$id] > 600;
 
     //if no feed set in cache, or 10 mins expired:
-	if (!$set || $timeout)
+	if (!$set || time() - $_SESSION['feedReadTimes'][$id] > 600)
 	{
         //try to reload the feed.
-		$result = getFeed($id);
+		$result = getFeed($id, $categoryName);
 
         //if unable to get the feed, display an error message. 
 		if (!$result) 
@@ -34,20 +34,10 @@ function checkFeed($id){
 }
 
 //Sends a request for RSS and saves it to the session, based on a category id. 
-function getFeed($categoryId){
+function getFeed($categoryId, $categoryName){
 
-    //Fake categories, to be replaced with SQL call to get category names later:  
-    $categories = ['Puppies', 'Kittens', 'Brown paper packages tied up with string'];
-
-    //fake checking to see if id is in our db
-    if ($categoryId > sizeof($categories)){
-        //return false if the category doesn't exist.
-        return false;
-    }
-
-
-    //get its name, and turn it into url-safe string: 
-    $categoryName = urlencode($categories[$categoryId]);
+    //turn name into url-safe string: 
+    $categoryName = urlencode($categoryName);
 
     //create string
     $queryString = 'https://news.google.com/news/feeds?pz=1&cf=all&ned=en&hl=us&q='.$categoryName.'&output=rss';

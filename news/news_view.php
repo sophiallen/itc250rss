@@ -1,9 +1,18 @@
 <?php
 /**
  * @package News
+ * desc: Sub list page
  * @author J Gilmer
  * @3.4.17
  * @see index.php in "news" directory
+ *
+ * Sub category list page for an RSS news feed project Seattle Central * ITC 250
+ *
+ * @license PHP License, version 3.01
+ * @see config_inc.php  
+ * @see header_inc.php
+ * @see footer_inc.php 
+ * @todo none
  */
  
 require '../inc_0700/config_inc.php'; #provides configuration, pathing, error handling, db credentials
@@ -28,9 +37,6 @@ $sql = "select c.CategoryName, c.Description, f.FeedName, f.FeedID
 $result = mysqli_query(IDB::conn(),$sql) or die(trigger_error(mysqli_error(IDB::conn()), E_USER_ERROR));
 
 
-
-
-
 # check variable of item passed in - if invalid data, forcibly redirect back to demo_list.php page
 
 if(mysqli_num_rows($result) > 0){
@@ -39,7 +45,7 @@ if(mysqli_num_rows($result) > 0){
 #END CONFIG AREA ---------------------------------------------------------- 
 get_header(); #defaults to theme header or header_inc.php
     
-
+echo '<h2 align="center">News Categories</h2>';
 
 foreach($result as $row){#objects of class row from SQL rows
     //$row = new stdClass;
@@ -53,7 +59,7 @@ foreach($result as $row){#objects of class row from SQL rows
 
  echo '<table class="table table-striped">';
     echo '<tr>';
-        echo '<th><a href="' . VIRTUAL_PATH . 'news/index.php' . '">Categories</a>:' . $CategoryName . '</th></tr>';
+        echo '<th><a href="' . VIRTUAL_PATH . 'news/index.php' . '">Categories</a> &nbsp; >> &nbsp; ' . $CategoryName . '</th></tr>';
     #two for each loops to separate $CategoryName
     
 

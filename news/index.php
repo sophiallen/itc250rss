@@ -1,6 +1,14 @@
 <?php
 /**
- * @author JGilmer
+ * @package News
+ * desc: List page
+ * @author J Gilmer
+ * @3.4.17
+ * @see news_view.php in "news" directory
+ *
+ * Inde page of Database to RSS project for Seattle Central ITC 250
+ *
+ * @license PHP License, version 3.01
  * @see config_inc.php  
  * @see header_inc.php
  * @see footer_inc.php 
@@ -9,7 +17,7 @@
 # '../' works for a sub-folder.  use './' for the root
 require '../inc_0700/config_inc.php'; #provides configuration, pathing, error handling, db credentials
 
-$config->titleTag = smartTitle(); #Fills <title> tag. If left empty will fallback to $config->titleTag in config_inc.php
+$config->titleTag = "Read Simple News"; #Fills <title> tag. If left empty will fallback to $config->titleTag in config_inc.php
 $config->metaDescription = smartTitle() . ' - ' . $config->metaDescription; 
 
 
@@ -22,8 +30,8 @@ $sql = "select CategoryID, CategoryName, Description
 
 get_header(); #defaults to header_inc.php
 ?>
-<h3 align="center"><?php echo $config->titleTag; ?></h3>
-<p>P3: News Aggregator</p>
+<h2 align="center">Read Simple: RSS News</h2>
+
 <!--<p>creates a singleton (shared) mysqli connection via a class named IDB</p>-->
 <?php
 #IDB::conn() creates a shareable database connection via a singleton class

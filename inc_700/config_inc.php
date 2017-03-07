@@ -61,13 +61,13 @@ include INCLUDE_PATH . 'MyAutoLoader.php'; #Allows multiple versions of AutoLoad
 
 # CONTENT CONFIGURATION AREA (theme, content areas & nav arrays for header/footer )-----------------------------------------
 $config->theme = 'Bootswatch'; #default theme (header/footer combo) see 'Themes' folder for others and info
-$config->style = 'cerulean.css'; #currently only Bootswatch Theme uses style to switch look & feel
-$config->slogan = 'Cotlets are Awesome!';
-$config->metaDescription = 'Welcome to the Cotlets website.  We split off from Applets.  But We are better.';
-$config->metaKeywords = 'Cotlets,Apricots,Turkish Delight,database,mysql,php';
+$config->style = 'cosmo.css'; #currently only Bootswatch Theme uses style to switch look & feel
+$config->slogan = 'Read-Simple News: Read Simply with Style.';
+$config->metaDescription = 'Read-Simple News: Read Simply with Style.';
+$config->metaKeywords = 'RSS, ITC250, database,mysql,php';
 $config->metaRobots = 'no index, no follow';
-$config->banner = 'My Cotlet Banner'; #goes inside header - can be overwritten
-$config->copyright = 'Cotlets, Not Applets, &copy; 2014 - ' . date('Y'); #goes inside footer - can be overwritten
+$config->banner = 'Read-Simple News'; #goes inside header - can be overwritten
+$config->copyright = 'Read-Simple News co, &copy; 2014 - ' . date('Y'); #goes inside footer - can be overwritten
 
 $config->sidebar1 = '
 <h3 align="center">Sidebar 1</h3>
@@ -86,11 +86,8 @@ change it on a page by page basis by altering config settings inside individual 
 #add Admin link to nav1 if not Bootswatch theme
 if(startSession() && isset($_SESSION['AdminID']) && $config->theme != 'Bootswatch'){$nav1[$config->adminDashboard] = "ADMIN~Go to Administrative Page";}#admin page added to link only if logged in
 #nav1 is the main navigation - tilde separator below splits text of link from title attribute
-$nav1['index.php'] = "Home~A model for building largely static web pages";
-$nav1['surveys/'] = "Surveys~The entrance to our Survey App";
-$nav1['demo/demo_shared.php'] = "MySQLi Shared~A demo page for building mysqli shared connection based applications.";
-$nav1['demo/demo_pdo.php'] = "PDO~A demo page for building PDO connection based applications.";
-$nav1['demo/demo_contact.php'] = "Contact~A demo for building postback forms";
+$nav1['news/index.php#'] = "Home~A model for building largely static web pages";
+$nav1['news/index.php'] = "News Catgories";
 $config->nav1 = $nav1;  #add to global config object - now available in all header/footers
 $config->tableEditor = ADMIN_PATH . 'nmEdit.php'; # Table Editor part of nmEdit package
 # CONTENT CONFIGURATION AREA (theme, content areas & nav arrays for header/footer )-----------------------------------------
