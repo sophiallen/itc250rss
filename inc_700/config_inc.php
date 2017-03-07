@@ -69,26 +69,24 @@ $config->metaRobots = 'no index, no follow';
 $config->banner = 'Read-Simple News'; #goes inside header - can be overwritten
 $config->copyright = 'Read-Simple News co, &copy; 2014 - ' . date('Y'); #goes inside footer - can be overwritten
 
-$config->sidebar1 = '
-<h3 align="center">Sidebar 1</h3>
-';
+$config->sidebar1 = '<h3 align="center">Sidebar 1</h3>';
 $config->sidebar2 = '<h3 align="center">Sidebar 2</h3>'; #sidebars can be overwritten (or added to) in individual pages
-if(startSession() && isset($_SESSION['AdminID']))
-{#add admin logged in info to sidebar
-	$config->sidebar2 .= '<p align="center">' . $_SESSION['Privilege'] . ' <b>' . $_SESSION['FirstName'] . '</b> is logged in.</p>';
-	$config->sidebar2 .= '<p align="center"><a href="' . $config->adminDashboard . '">ADMIN</a></p>';
-	$config->sidebar2 .= '<p align="center"><a href="' . $config->adminLogout . '">LOGOUT</a></p>';
-}	
+// if(startSession() && isset($_SESSION['AdminID']))
+// {#add admin logged in info to sidebar
+// 	$config->sidebar2 .= '<p align="center">' . $_SESSION['Privilege'] . ' <b>' . $_SESSION['FirstName'] . '</b> is logged in.</p>';
+// 	$config->sidebar2 .= '<p align="center"><a href="' . $config->adminDashboard . '">ADMIN</a></p>';
+// 	$config->sidebar2 .= '<p align="center"><a href="' . $config->adminLogout . '">LOGOUT</a></p>';
+// }	
 $config->sidebar2 .= '
 <p>Here is our sidebar area which is inside a header or footer include file. You can change it in the main config file or 
 change it on a page by page basis by altering config settings inside individual pages.</p> 
 ';
 #add Admin link to nav1 if not Bootswatch theme
-if(startSession() && isset($_SESSION['AdminID']) && $config->theme != 'Bootswatch'){$nav1[$config->adminDashboard] = "ADMIN~Go to Administrative Page";}#admin page added to link only if logged in
+// if(startSession() && isset($_SESSION['AdminID']) && $config->theme != 'Bootswatch'){$nav1[$config->adminDashboard] = "ADMIN~Go to Administrative Page";}#admin page added to link only if logged in
 #nav1 is the main navigation - tilde separator below splits text of link from title attribute
-$nav1['news/index.php#'] = "Home~A model for building largely static web pages";
-$nav1['news/index.php'] = "News Catgories";
-$config->nav1 = $nav1;  #add to global config object - now available in all header/footers
+$nav['news/index.php#'] = "Home~A model for building largely static web pages";
+$nav['news/index.php'] = "News Catgories";
+$config->nav1 = $nav;  #add to global config object - now available in all header/footers
 $config->tableEditor = ADMIN_PATH . 'nmEdit.php'; # Table Editor part of nmEdit package
 # CONTENT CONFIGURATION AREA (theme, content areas & nav arrays for header/footer )-----------------------------------------
 

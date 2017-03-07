@@ -60,10 +60,11 @@ function getFeed($categoryId, $categoryName){
         preg_match('@src="([^"]+)"@', $item->description, $match);
         $parts = explode('<font size="-1">', $item->description);
 
-        //$_SESSION['newsStories'][$categoryId][$i] = $item->description;
 
         $_SESSION['newsStories'][$categoryId][$i]['title'] = (string)$item->title;
+        $_SESSION['newsStories'][$categoryId][$i]['image'] = sizeof($match) >=2 ? $match[0] : '';
         $_SESSION['newsStories'][$categoryId][$i]['link'] = (string)$item->link;
+        $_SESSION['newsStories'][$categoryId][$i]['summary'] = strip_tags($parts[2]);
         $i++;
     }
 

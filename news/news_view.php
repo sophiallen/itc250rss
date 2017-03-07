@@ -40,7 +40,7 @@ $result = mysqli_query(IDB::conn(),$sql) or die(trigger_error(mysqli_error(IDB::
 # check variable of item passed in - if invalid data, forcibly redirect back to demo_list.php page
 
 if(mysqli_num_rows($result) > 0){
-    $config->titleTag = "'" . $result->fetch_field_direct(2)->name . "' Feed!";
+    $config->titleTag = "RSS News";
 
 #END CONFIG AREA ---------------------------------------------------------- 
 get_header(); #defaults to theme header or header_inc.php

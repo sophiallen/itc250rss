@@ -53,9 +53,15 @@ function displayFeed($id) {
 
 	// Print out article titles with links.
 	foreach ($stories as $item) {
-		echo '<div class="story">';
-	    echo '<h4><a href=' . $item['link'] . '>';	 
+		echo '<div class="story" style=" overflow: hidden; margin: 1.5em;">';
+	    echo '<h4><a href=' . $item['link'] . '>';
+	    echo '<p>';	 
 	    echo $item['title'] . '</a></h4>';
+	    if (strlen($item['image']) > 1){
+	    	echo '<image '.$item['image'].' style=" float: left; margin-right: 1em;"/>';
+	    }
+	    echo $item['summary'].'</p>';
+	    echo '</div>';
 	}
 }
 
