@@ -16,10 +16,10 @@ session_start();
 function checkFeed($id, $categoryName){
 
     $set = isset($_SESSION['newsStories'][$id]);
-    // $timeout = time() - $_SESSION['feedReadTimes'][$id] > 600;
+     //$timeout = time() - $_SESSION['feedReadTimes'][$id] > 600;
 
     //if no feed set in cache, or 10 mins expired:
-	if (!$set || time() - $_SESSION['feedReadTimes'][$id] > 600)
+	if (!$set || (time() - $_SESSION['feedReadTimes'][$id] > 600))
 	{
         //try to reload the feed.
 		$result = getFeed($id, $categoryName);
